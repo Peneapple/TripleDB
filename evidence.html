@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Search BioGRID-derived source evidence and linked TripleDB records.">
+  <meta name="description" content="Search BioGRID-derived and non-BioGRID source evidence linked to TripleDB records.">
   <meta name="theme-color" content="#0f766e">
   <title>Source evidence | TripleDB</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -16,7 +16,7 @@
 </head>
 <body data-page="evidence">
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="prototype-banner">Live provenance search · BioGRID IDs and PubMed sources link back to curated TDB records</div>
+<div class="prototype-banner">TripleDB v1.0.0 · Versioned static release archived on Zenodo</div>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="TripleDB home"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a>
@@ -29,14 +29,14 @@
     <div class="container">
       <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Source evidence</span></div>
       <div class="eyebrow">Audit and reproducibility layer</div>
-      <h1>Inspect BioGRID-derived source records</h1>
-      <p class="lede">Search by BioGRID ID, PubMed ID, TDB accession, gene symbol or alias. TDB and gene queries first identify curated records and then expand their Source_ID values into BioGRID evidence.</p>
+      <h1>Inspect source evidence records</h1>
+      <p class="lede">Search by BioGRID ID, PubMed ID, TDB accession, manual TDB source ID, gene symbol or alias. TDB and gene queries first identify curated records and then expand their Source_ID values into BioGRID-derived or non-BioGRID source evidence.</p>
       <form class="search-panel" id="evidence-search-form" action="evidence.html" method="get" role="search">
         <div class="search-row">
-          <div class="search-input-wrap"><label class="visually-hidden" for="evidence-query">Evidence query</label><input class="search-input" id="evidence-query" name="q" placeholder="Examples: 1535083, PUBMED:25615824, TDB00001, WRKY18" autocomplete="off"></div>
+          <div class="search-input-wrap"><label class="visually-hidden" for="evidence-query">Evidence query</label><input class="search-input" id="evidence-query" name="q" placeholder="Examples: 1535083, PUBMED:25615824, TDB00001, TDB04604, WRKY18" autocomplete="off"></div>
           <button class="btn btn-primary btn-lg" type="submit">Find source records</button>
         </div>
-        <p class="search-hint">Publication values open PubMed in a new tab; BioGRID IDs remain searchable local source identifiers.</p>
+        <p class="search-hint">Publication values open PubMed in a new tab; BioGRID IDs and TDB-prefixed manual source IDs remain searchable local reference identifiers.</p>
       </form>
     </div>
   </section>
@@ -51,20 +51,20 @@
       <div class="result-toolbar"><span class="result-count" id="evidence-count">0 source records</span><a class="btn btn-ghost btn-sm" href="search.html?scope=evidence">Use combined search →</a></div>
       <div class="callout info mb-0" id="evidence-status"><div class="callout-icon">i</div><div>Loading source indexes…</div></div>
       <div class="pagination-bar" id="evidence-pagination-top"></div>
-      <div class="table-wrap search-results-table"><table><thead id="evidence-table-head"><tr><th>BioGRID ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr></thead><tbody id="evidence-table-body"><tr><td colspan="7">Loading…</td></tr></tbody></table></div>
+      <div class="table-wrap search-results-table"><table><thead id="evidence-table-head"><tr><th>Reference ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr></thead><tbody id="evidence-table-body"><tr><td colspan="7">Loading…</td></tr></tbody></table></div>
       <div class="pagination-bar" id="evidence-pagination-bottom"></div>
-      <div class="callout warning mt-3"><div class="callout-icon">!</div><div><strong>Identifier policy:</strong> BioGRID IDs identify source records; stable TDB accessions identify curated higher-order conclusions and preserve links to every supporting Source_ID.</div></div>
+      <div class="callout warning mt-3"><div class="callout-icon">!</div><div><strong>Identifier policy:</strong> BioGRID numeric IDs identify BioGRID-derived source records; TDB-prefixed Source_ID values identify non-BioGRID manual source records; stable TDB accessions identify curated higher-order conclusions and preserve links to every supporting Source_ID.</div></div>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container footer-main">
-    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID source evidence.</p><span class="badge warning" data-config="releaseLabel">Search-enabled local build</span></div>
+    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID-derived and non-BioGRID source evidence.</p><span class="badge primary" data-config="releaseLabel">v1.0.0</span></div>
     <div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="search.html">Interaction search</a></li><li><a href="browse.html">Browse records</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="record.html">Record details</a></li></ul></div>
     <div><div class="footer-heading">Data</div><ul class="footer-links"><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="updates.html">Version history</a></li><li><a href="documentation.html#data-model">Data model</a></li></ul></div>
     <div><div class="footer-heading">Project</div><ul class="footer-links"><li><a href="about.html#citation">Cite TripleDB</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="documentation.html#faq">FAQ</a></li><li><a href="about.html#policies">Policies</a></li></ul></div>
   </div>
-  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · Search-enabled static build</div><div><span data-config="updatePolicy">Planned at least annually</span></div></div>
+  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · v1.0.0 static build</div><div><span data-config="updatePolicy">Stable releases are archived through GitHub and Zenodo; data updates are planned at least annually.</span></div></div>
 </footer>
 </body>
 </html>

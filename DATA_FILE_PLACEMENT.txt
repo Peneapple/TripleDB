@@ -1,6 +1,10 @@
 TripleDB fixed deployment filenames
 ===================================
 
+Current release: TripleDB v1.0.0
+Zenodo DOI: https://doi.org/10.5281/zenodo.20931612
+Repository: https://github.com/Peneapple/TripleDB
+
 Place JSON files here:
 
   data/tdb_core_interaction_index.json

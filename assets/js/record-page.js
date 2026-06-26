@@ -68,7 +68,11 @@
 
       const publicationContainer = UI.$("#record-publications");
       publicationContainer.replaceChildren();
-      const publications = Array.from(new Set(sourceRecords.map((item) => UI.clean(item?.["Publication Source"])).filter(Boolean)));
+      const publications = Array.from(new Set(
+        sourceRecords
+          .map((item) => UI.clean(item?.["Publication Source"]))
+          .filter(Boolean)
+      ));
       if (publications.length) {
         const list = UI.create("div", { className: "inline-link-list" });
         publications.forEach((publication) => list.appendChild(UI.publicationAnchor(publication)));
@@ -80,9 +84,9 @@
       const sourceTbody = UI.$("#record-source-table-body");
       const enrichedSources = sourceRecords.map((sourceRecord) => ({ ...sourceRecord, _linkedTdbIds: [id] }));
       UI.renderEvidenceTable(sourceTbody, enrichedSources, {
-        emptyTitle: sourceAvailable ? "No linked BioGRID source records found" : "BioGRID source JSON unavailable",
+        emptyTitle: sourceAvailable ? "No linked source records found" : "Source JSON unavailable",
         emptyDetail: sourceAvailable
-          ? "Check that Source_ID values match BioGRID IDs in the source index."
+          ? "Check that Source_ID values match BioGRID numeric IDs or TDB-prefixed manual source IDs."
           : "Place biogrid_source_index.json in data/ and reload."
       });
 
@@ -98,7 +102,7 @@
       exportButton.addEventListener("click", () => {
         UI.downloadObject(`${id}.json`, {
           record,
-          linked_biogrid_source_records: sourceRecords
+          linked_source_records: sourceRecords
         });
       });
 
@@ -106,8 +110,8 @@
       UI.setStatus(
         status,
         sourceAvailable
-          ? `Loaded ${id} with ${sourceRecords.length} linked BioGRID source record${sourceRecords.length === 1 ? "" : "s"}.`
-          : `Loaded ${id}; the source JSON was unavailable, so provenance details could not be expanded.`,
+          ? `Loaded ${id} with ${sourceRecords.length} linked source record${sourceRecords.length === 1 ? "" : "s"}.`
+          : `Loaded ${id}; the source JSON was unavailable, so BioGRID provenance details could not be expanded. Manual source IDs are still shown when present.`,
         sourceAvailable ? "info" : "warning"
       );
     } catch (error) {

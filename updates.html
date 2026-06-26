@@ -14,7 +14,7 @@
 </head>
 <body class="" data-page="updates">
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<div class="prototype-banner">TripleDB v1.0.0 · Versioned static release archived on Zenodo</div>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="TripleDB home">
@@ -35,9 +35,9 @@
 </header>
 <main id="main">
 
-<section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Version history</span></div><div class="eyebrow">Sustainability and stable identifiers</div><h1>Version history and update policy</h1><p class="lede">A dedicated release page makes maintenance visible, preserves old downloads and documents how source changes affect existing TDB records.</p></div></section>
-<section class="page-section compact"><div class="container"><div class="grid grid-2"><article class="card pad-lg"><span class="badge primary">Proposed cadence</span><h2 class="mt-2" data-config="updatePolicy">Planned at least annually</h2><p class="muted">Each update compares the new BioGRID release with the previous source release, reviews newly added and modified candidate records, and applies the same curation rules.</p></article><article class="card pad-lg"><span class="badge secondary">Stable accession policy</span><h2 class="mt-2">TDB IDs are not reassigned</h2><p class="muted">Old links remain resolvable. Revisions, reclassifications and deprecations are recorded rather than hidden.</p></article></div></div></section>
-<section class="page-section soft"><div class="container"><div class="section-heading"><div><div class="eyebrow">Release log</div><h2>Version history</h2><p>Keep downloadable snapshots and concise change summaries for every public release.</p></div></div><div class="timeline"><div class="timeline-item"><div class="timeline-date">Planned initial release</div><div class="flex items-center justify-between gap-2 flex-wrap"><h3>TripleDB v1.0</h3><span class="badge warning">Not released</span></div><p class="muted">Initial curated interaction table, BioGRID-derived evidence layer, schema, website documentation and stable accession registry.</p><div class="download-meta"><span>Source BioGRID release: to be confirmed</span><span>·</span><span>Record counts: pending</span></div></div><div class="timeline-item"><div class="timeline-date">Future annual update</div><h3>TripleDB v1.x</h3><p class="muted">Review new and modified BioGRID records, add manually curated literature records, revise annotations and publish a structured change log.</p></div></div></div></section>
+<section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Version history</span></div><div class="eyebrow">Sustainability and stable identifiers</div><h1>Version history and update policy</h1><p class="lede">This page makes maintenance visible, preserves stable releases and documents how source changes affect existing TDB records.</p></div></section>
+<section class="page-section compact"><div class="container"><div class="grid grid-2"><article class="card pad-lg"><span class="badge primary">Update cadence</span><h2 class="mt-2" data-config="updatePolicy">Stable releases are archived through GitHub and Zenodo; data updates are planned at least annually.</h2><p class="muted">Each update compares the new BioGRID release with the previous source release, reviews newly added and modified candidate records, and applies the same curation rules.</p></article><article class="card pad-lg"><span class="badge secondary">Stable accession policy</span><h2 class="mt-2">TDB IDs are not reassigned</h2><p class="muted">Old links remain resolvable. Revisions, reclassifications and deprecations are recorded rather than hidden.</p></article></div></div></section>
+<section class="page-section soft"><div class="container"><div class="section-heading"><div><div class="eyebrow">Release log</div><h2>Version history</h2><p>Downloadable snapshots and concise change summaries are retained for every public release.</p></div></div><div class="timeline"><div class="timeline-item"><div class="timeline-date">2026-06-26</div><div class="flex items-center justify-between gap-2 flex-wrap"><h3>TripleDB v1.0.0</h3><span class="badge success">Released</span></div><p class="muted">Initial curated interaction table, BioGRID-derived evidence layer, gene alias index, schema, website documentation and stable accession registry.</p><div class="download-meta"><span>Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.20931612" target="_blank" rel="noopener noreferrer">10.5281/zenodo.20931612</a></span><span>·</span><span>Source BioGRID release: BIOGRID-ALL-5.0.250</span><span>·</span><span>Repository: <a href="https://github.com/Peneapple/TripleDB" target="_blank" rel="noopener noreferrer">GitHub</a></span></div></div><div class="timeline-item"><div class="timeline-date">Future release</div><h3>TripleDB v1.x</h3><p class="muted">Review new and modified BioGRID records, add manually curated literature records, revise annotations and publish a structured change log with a new archived release.</p></div></div></div></section>
 <section class="page-section"><div class="container"><div class="section-heading"><div><div class="eyebrow">Change categories</div><h2>What every release should report</h2></div></div><div class="grid grid-4"><article class="card pad"><span class="badge success">Added</span><h3 class="mt-2">New records</h3><p class="muted">New TDB accessions and the source evidence that triggered inclusion.</p></article><article class="card pad"><span class="badge secondary">Revised</span><h3 class="mt-2">Annotation changes</h3><p class="muted">Same accession; corrected roles, phenotype, condition or provenance.</p></article><article class="card pad"><span class="badge accent">Reclassified</span><h3 class="mt-2">Interpretation changes</h3><p class="muted">Relation category or evidence confidence changed after review.</p></article><article class="card pad"><span class="badge warning">Deprecated</span><h3 class="mt-2">Withdrawn records</h3><p class="muted">Accession remains visible with reason, date and replacement link.</p></article></div><div class="callout info mt-3"><div class="callout-icon">i</div><div><strong>Source-release comparison should include more than new IDs.</strong><p>Also inspect modified metadata and source records that were corrected, merged or removed.</p></div></div></div></section>
 
 </main>
@@ -48,8 +48,8 @@
         <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
         <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
       </a>
-      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
-      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+      <p>TripleDB is a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge primary" data-config="releaseLabel">v1.0.0</span>
     </div>
     <div>
       <div class="footer-heading">Explore</div>
@@ -80,8 +80,8 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
-    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+    <div>© <span data-current-year></span> TripleDB project · v1.0.0 GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Stable releases are archived through GitHub and Zenodo; data updates are planned at least annually.</span> · Stable accession policy active</div>
   </div>
 </footer>
 </body>

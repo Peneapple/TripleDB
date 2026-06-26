@@ -64,7 +64,7 @@
         countElement.textContent = "0 source records";
         UI.setStatus(
           statusElement,
-          "Enter a BioGRID ID, PubMed ID, TDB accession or gene; alternatively choose an organism.",
+          "Enter a BioGRID ID, PubMed ID, TDB accession, manual TDB source ID or gene; alternatively choose an organism.",
           "info"
         );
         UI.setEvidenceHeader(thead);
@@ -72,7 +72,7 @@
           tbody,
           7,
           "Enter a source or curated-record query",
-          "Examples: 1535083, PUBMED:25615824, TDB00001 or WRKY18."
+          "Examples: 1535083, PUBMED:25615824, TDB00001, TDB04604 or WRKY18."
         );
         paginationTop.replaceChildren();
         paginationBottom.replaceChildren();
@@ -83,7 +83,7 @@
 
       if (updateUrl) syncUrl();
       countElement.textContent = "Searching…";
-      UI.setStatus(statusElement, "Searching BioGRID-derived source evidence…", "info");
+      UI.setStatus(statusElement, "Searching source evidence…", "info");
       exportButton.disabled = true;
 
       try {

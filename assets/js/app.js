@@ -157,7 +157,7 @@
           className: "mono",
           text: sourceId,
           href: evidenceLink(sourceId),
-          title: `Open BioGRID source record ${sourceId}`
+          title: `Open reference ID ${sourceId}`
         })
       );
     });
@@ -249,7 +249,7 @@
 
   const setEvidenceHeader = (thead) => {
     if (!thead) return;
-    thead.innerHTML = "<tr><th>BioGRID ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr>";
+    thead.innerHTML = "<tr><th>Reference ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr>";
   };
 
   const renderEvidenceTable = (tbody, records, options = {}) => {
@@ -268,8 +268,21 @@
     records.forEach((record) => {
       const row = create("tr");
       const bioGridId = clean(record?.["BioGRID ID"]);
+      const referenceId = clean(record?._manualSourceId || record?.["Reference ID"] || bioGridId);
+      const sourceType = clean(record?._sourceType) || (bioGridId ? "BioGRID source" : "Non-BioGRID source");
+
       const idCell = create("td");
-      idCell.appendChild(create("a", { className: "mono strong-link", text: bioGridId || "—", href: evidenceLink(bioGridId) }));
+      if (referenceId) {
+        idCell.appendChild(create("a", { className: "mono strong-link", text: referenceId, href: evidenceLink(referenceId) }));
+      } else {
+        idCell.appendChild(create("span", { text: "—" }));
+      }
+      idCell.appendChild(create("br"));
+      idCell.appendChild(create("span", {
+        className: bioGridId ? "badge secondary" : "badge warning",
+        text: sourceType
+      }));
+
       const authorCell = create("td", { text: clean(record?.Author) || "—" });
       const publicationCell = create("td");
       publicationCell.appendChild(publicationAnchor(record?.["Publication Source"]));

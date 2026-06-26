@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "TripleDB: a curated database of triple-gene and higher-order genetic interactions"
+message: "If you use TripleDB, please cite the versioned release."
+type: dataset
+authors:
+  - family-names: Geng
+    given-names: Peter X.
+    affiliation: Peking University
+    email: peter_geng@stu.pku.edu.cn
+  - family-names: Zhu
+    given-names: Huaiqiu
+    affiliation: Peking University
+    email: hqzhu@pku.edu.cn
+version: "1.0.0"
+date-released: "2026-06-26"
+doi: "10.5281/zenodo.20931612"
+url: "https://tripledb.org"
+repository-code: "https://github.com/Peneapple/TripleDB"
+license: CC-BY-4.0
+keywords:
+  - genetic interaction
+  - higher-order genetic interaction
+  - triple mutant
+  - synthetic rescue
+  - synthetic lethality
+  - BioGRID
+  - Saccharomyces cerevisiae
+  - database

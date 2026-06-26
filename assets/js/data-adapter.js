@@ -292,6 +292,34 @@
     return match ? match[1] : null;
   };
 
+  const isManualSourceId = (value) => /^TDB\d{5}$/i.test(clean(value));
+
+  const sourceReferenceId = (record) =>
+    clean(record?._manualSourceId || record?.["Reference ID"] || record?.["BioGRID ID"]);
+
+  const sourceType = (record) =>
+    clean(record?._sourceType) || (sourceBioGridId(record) ? "BioGRID source" : "Non-BioGRID source");
+
+  const makeManualSourceRecord = (coreRecord, core, manualSourceId = "") => {
+    const map = getCoreFieldMap(core);
+    const tdbId = clean(recordField(coreRecord, map.tdb_id, ["TripleDB_ID"]));
+    const pubmedIds = getCorePubMedIds(coreRecord, core);
+    const publication = pubmedIds.length ? pubmedIds.map((pmid) => `PUBMED:${pmid}`).join("; ") : "";
+    return {
+      "Reference ID": clean(manualSourceId) || clean(recordField(coreRecord, map.source_id, ["Source_ID"])) || tdbId,
+      "BioGRID ID": "",
+      Author: "TripleDB manual curation",
+      "Publication Source": publication,
+      "Experimental System Type": clean(recordField(coreRecord, map.experimental_system, ["Experimental System"])),
+      Organism: clean(recordField(coreRecord, map.organism, ["Organism"])),
+      Qualifications: clean(recordField(coreRecord, map.qualifications, ["Qualifications"])),
+      _sourceType: "Non-BioGRID source",
+      _manualSourceId: clean(manualSourceId) || clean(recordField(coreRecord, map.source_id, ["Source_ID"])),
+      _linkedTdbIds: tdbId ? [tdbId] : [],
+      _linkedCoreRecord: coreRecord
+    };
+  };
+
   const aliasRecordValues = (record) => {
     const values = [record?.["Gene Official Symbol"], record?.["Gene Systematic Name"]];
     values.push(...clean(record?.["Gene Synonyms"]).split("|").map(clean).filter(Boolean));
@@ -523,19 +551,48 @@
     const sourceRowIds = [];
     rowsToRecords(core, coreRowIds).forEach((record) => {
       getSourceIds(record, core).forEach((sourceId) => {
-        sourceRowIds.push(...indexHits(source, "BioGRID ID", sourceId));
+        if (!isManualSourceId(sourceId)) sourceRowIds.push(...indexHits(source, "BioGRID ID", sourceId));
       });
     });
     return uniqueNumbers(sourceRowIds);
   };
 
+  const manualSourceRecordsFromCoreRows = (core, coreRowIds, preferredSourceId = "") => {
+    const manualRecords = [];
+    const preferred = clean(preferredSourceId).toLowerCase();
+    rowsToRecords(core, coreRowIds).forEach((record) => {
+      let manualSourceIds = getSourceIds(record, core).filter(isManualSourceId);
+      if (preferred && isManualSourceId(preferredSourceId)) {
+        manualSourceIds = manualSourceIds.filter((sourceId) => sourceId.toLowerCase() === preferred);
+      }
+      manualSourceIds.forEach((sourceId) => {
+        manualRecords.push(makeManualSourceRecord(record, core, sourceId));
+      });
+    });
+    return manualRecords;
+  };
+
+  const uniqueManualSourceRecords = (records) => {
+    const map = new Map();
+    (records || []).forEach((record) => {
+      const key = `${clean(record?._manualSourceId || record?.["Reference ID"])}|${(record?._linkedTdbIds || []).join("|")}`;
+      if (!map.has(key)) map.set(key, record);
+    });
+    return Array.from(map.values());
+  };
+
   const linkedTdbIdsForSourceRecord = (sourceRecord, core) => {
+    if (Array.isArray(sourceRecord?._linkedTdbIds) && sourceRecord._linkedTdbIds.length) {
+      return unique(sourceRecord._linkedTdbIds.map(clean).filter(Boolean));
+    }
     // Provenance links are exact Source_ID/BioGRID-ID links. Publication-level
     // search is supported separately, but a shared PMID alone is not treated
     // as proof that one source row belongs to every curated record in a paper.
     const rowIds = [];
+    const referenceId = sourceReferenceId(sourceRecord);
     const sourceId = sourceBioGridId(sourceRecord);
     if (sourceId) rowIds.push(...indexHits(core, "Source_ID", sourceId));
+    if (isManualSourceId(referenceId)) rowIds.push(...indexHitsCaseInsensitive(core, "Source_ID", referenceId));
     const map = getCoreFieldMap(core);
     return unique(
       rowsToRecords(core, rowIds)
@@ -552,12 +609,16 @@
   const sourceRecordContainsText = (record, normalizedQuery) => {
     if (!normalizedQuery) return true;
     return [
+      record?.["Reference ID"],
+      record?._manualSourceId,
+      record?._sourceType,
       record?.["BioGRID ID"],
       record?.Author,
       record?.["Publication Source"],
       record?.Qualifications,
       record?.Organism,
-      record?.["Experimental System Type"]
+      record?.["Experimental System Type"],
+      ...(record?._linkedTdbIds || [])
     ].some((value) => normalizeKey(value).includes(normalizedQuery));
   };
 
@@ -569,11 +630,16 @@
       parsed.raw && !parsed.isIdentifier ? loadAliases({ optional: true }) : Promise.resolve(null)
     ]);
     const sourceRowIds = [];
+    const manualSourceRecords = [];
     const interpretation = [];
 
     if (!parsed.raw) {
       sourceRowIds.push(...allRowIds(source));
-      interpretation.push("all source records");
+      interpretation.push("all BioGRID source records");
+      if (core) {
+        manualSourceRecords.push(...manualSourceRecordsFromCoreRows(core, allRowIds(core)));
+        if (manualSourceRecords.length) interpretation.push("manual non-BioGRID source records");
+      }
     } else {
       if (parsed.biogridId) {
         sourceRowIds.push(...indexHits(source, "BioGRID ID", parsed.biogridId));
@@ -589,14 +655,20 @@
         interpretation.push("numeric BioGRID or PubMed ID");
       }
       if (parsed.tdbId && core) {
-        const coreRows = indexHitsCaseInsensitive(core, "TripleDB_ID", parsed.tdbId);
-        sourceRowIds.push(...sourceRowsFromCoreRows(core, source, coreRows));
-        interpretation.push("TDB accession provenance");
+        const accessionRows = indexHitsCaseInsensitive(core, "TripleDB_ID", parsed.tdbId);
+        sourceRowIds.push(...sourceRowsFromCoreRows(core, source, accessionRows));
+        manualSourceRecords.push(...manualSourceRecordsFromCoreRows(core, accessionRows));
+        if (accessionRows.length) interpretation.push("TDB accession provenance");
+
+        const manualSourceRows = indexHitsCaseInsensitive(core, "Source_ID", parsed.tdbId);
+        manualSourceRecords.push(...manualSourceRecordsFromCoreRows(core, manualSourceRows, parsed.tdbId));
+        if (manualSourceRows.length) interpretation.push("manual non-BioGRID source ID");
       }
 
       if (!parsed.isIdentifier && core) {
         const collected = await collectCoreRowIds(core, aliases, source, parsed.raw, filters);
         sourceRowIds.push(...sourceRowsFromCoreRows(core, source, collected.rowIds));
+        manualSourceRecords.push(...manualSourceRecordsFromCoreRows(core, collected.rowIds));
         if (collected.rowIds.length) interpretation.push("gene / curated-record provenance");
       }
 
@@ -605,6 +677,7 @@
 
       if (
         sourceRowIds.length === 0 &&
+        manualSourceRecords.length === 0 &&
         searchConfig.partialTextFallback !== false &&
         !parsed.isIdentifier &&
         parsed.normalized.length >= 2
@@ -616,12 +689,18 @@
       }
     }
 
-    const matched = rowsToRecords(source, uniqueNumbers(sourceRowIds))
+    const biogridMatched = rowsToRecords(source, uniqueNumbers(sourceRowIds))
       .filter((record) => sourceRecordMatchesFilters(record, filters))
       .map((record) => ({
         ...record,
+        _sourceType: "BioGRID source",
         _linkedTdbIds: core ? linkedTdbIdsForSourceRecord(record, core) : []
       }));
+
+    const manualMatched = uniqueManualSourceRecords(manualSourceRecords)
+      .filter((record) => sourceRecordMatchesFilters(record, filters));
+
+    const matched = biogridMatched.concat(manualMatched);
     const page = paginate(matched, filters);
     return {
       ...page,
@@ -630,7 +709,7 @@
       records: page.records,
       sourceMeta: source._meta || {},
       interpretation: unique(interpretation),
-      dataWarnings: core ? [] : ["Core JSON was unavailable, so linked TDB accessions could not be displayed."]
+      dataWarnings: core ? [] : ["Core JSON was unavailable, so linked TDB accessions and manual non-BioGRID sources could not be displayed."]
     };
   };
 
@@ -646,19 +725,30 @@
     if (!hit) return null;
     const source = await loadSource().catch(() => null);
     const sourceRecords = [];
-    if (source) {
-      getSourceIds(hit.record, hit.core).forEach((sourceId) => {
-        sourceRecords.push(...rowsToRecords(source, indexHits(source, "BioGRID ID", sourceId)));
-      });
-    }
+    const manualSourceRecords = [];
+    getSourceIds(hit.record, hit.core).forEach((sourceId) => {
+      if (isManualSourceId(sourceId)) {
+        manualSourceRecords.push(makeManualSourceRecord(hit.record, hit.core, sourceId));
+      } else if (source) {
+        sourceRecords.push(...rowsToRecords(source, indexHits(source, "BioGRID ID", sourceId)).map((sourceRecord) => ({
+          ...sourceRecord,
+          _sourceType: "BioGRID source"
+        })));
+      }
+    });
     const records = hit.core.records || [];
     const previous = hit.rowId > 0 ? records[hit.rowId - 1] : null;
     const next = hit.rowId < records.length - 1 ? records[hit.rowId + 1] : null;
+    const combinedSourceRecords = Array.from(
+      new Map(
+        sourceRecords
+          .concat(uniqueManualSourceRecords(manualSourceRecords))
+          .map((item) => [sourceReferenceId(item) || JSON.stringify(item), item])
+      ).values()
+    );
     return {
       ...hit,
-      sourceRecords: Array.from(
-        new Map(sourceRecords.map((item) => [sourceBioGridId(item) || JSON.stringify(item), item])).values()
-      ),
+      sourceRecords: combinedSourceRecords,
       sourceAvailable: Boolean(source),
       previous,
       next
@@ -666,11 +756,14 @@
   };
 
   const getLinkedCoreRecordsForSourceRecord = async (sourceRecord) => {
+    if (sourceRecord?._linkedCoreRecord) return [sourceRecord._linkedCoreRecord];
     const core = await loadCore();
     const rowIds = [];
     const sourceId = sourceBioGridId(sourceRecord);
+    const referenceId = sourceReferenceId(sourceRecord);
     if (sourceId) rowIds.push(...indexHits(core, "Source_ID", sourceId));
-    return rowsToRecords(core, rowIds);
+    if (isManualSourceId(referenceId)) rowIds.push(...indexHitsCaseInsensitive(core, "Source_ID", referenceId));
+    return rowsToRecords(core, uniqueNumbers(rowIds));
   };
 
   const getFilterOptions = async () => {
@@ -837,6 +930,9 @@
     getEstimatedGeneCount,
     sourcePublication,
     sourceBioGridId,
+    sourceReferenceId,
+    sourceType,
+    isManualSourceId,
     sourcePubMedNumber,
     resolveGeneAlias,
     searchInteractions,

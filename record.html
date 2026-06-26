@@ -16,7 +16,7 @@
 </head>
 <body data-page="record">
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="prototype-banner">Live record detail · TDB accession, curated fields and linked source evidence</div>
+<div class="prototype-banner">TripleDB v1.0.0 · Versioned static release archived on Zenodo</div>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="TripleDB home"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a>
@@ -56,8 +56,8 @@
         </section>
 
         <section class="record-section">
-          <div class="flex items-center justify-between gap-2 flex-wrap"><div><h2>Linked BioGRID source records</h2><p class="muted small"><span id="record-source-count">0</span> Source_ID values are attached to this curated record.</p></div><a class="btn btn-outline btn-sm" href="evidence.html">Open source search</a></div>
-          <div class="table-wrap"><table><thead><tr><th>BioGRID ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr></thead><tbody id="record-source-table-body"><tr><td colspan="7">Loading source records…</td></tr></tbody></table></div>
+          <div class="flex items-center justify-between gap-2 flex-wrap"><div><h2>Linked source records</h2><p class="muted small"><span id="record-source-count">0</span> Source_ID values are attached to this curated record.</p></div><a class="btn btn-outline btn-sm" href="evidence.html">Open source search</a></div>
+          <div class="table-wrap"><table><thead><tr><th>Reference ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr></thead><tbody id="record-source-table-body"><tr><td colspan="7">Loading source records…</td></tr></tbody></table></div>
         </section>
 
         <section class="record-section"><h2>Record navigation</h2><div class="record-navigation" id="record-navigation"></div></section>
@@ -65,7 +65,7 @@
 
       <aside>
         <section class="record-section"><h2 class="aside-heading">Record metadata</h2><div class="side-list"><div class="side-list-item"><span class="side-label">Accession</span><div class="side-value mono" id="record-accession">—</div></div><div class="side-list-item"><span class="side-label">Data status</span><div class="side-value">Curated core record</div></div><div class="side-list-item"><span class="side-label">Interaction order</span><div class="side-value" id="record-order-side">See summary</div></div></div></section>
-        <section class="record-section"><h2 class="aside-heading">Cross-references</h2><div class="side-list"><div class="side-list-item"><span class="side-label">BioGRID IDs</span><div class="side-value" id="record-source-ids">—</div></div><div class="side-list-item"><span class="side-label">Publications</span><div class="side-value" id="record-publications">—</div></div></div></section>
+        <section class="record-section"><h2 class="aside-heading">Cross-references</h2><div class="side-list"><div class="side-list-item"><span class="side-label">Reference IDs</span><div class="side-value" id="record-source-ids">—</div></div><div class="side-list-item"><span class="side-label">Publications</span><div class="side-value" id="record-publications">—</div></div></div></section>
         <section class="record-section"><h2 class="aside-heading">Interpretation note</h2><p class="muted small">Records with four or more indexed genes are classified as quadruple-or-higher. Pair-context records were retained only when directly relevant to higher-order interpretation.</p></section>
       </aside>
     </div>
@@ -73,12 +73,12 @@
 </main>
 <footer class="site-footer">
   <div class="container footer-main">
-    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID source evidence.</p><span class="badge warning" data-config="releaseLabel">Search-enabled local build</span></div>
+    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID-derived and non-BioGRID source evidence.</p><span class="badge primary" data-config="releaseLabel">v1.0.0</span></div>
     <div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="search.html">Interaction search</a></li><li><a href="browse.html">Browse records</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="record.html">Record details</a></li></ul></div>
     <div><div class="footer-heading">Data</div><ul class="footer-links"><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="updates.html">Version history</a></li><li><a href="documentation.html#data-model">Data model</a></li></ul></div>
     <div><div class="footer-heading">Project</div><ul class="footer-links"><li><a href="about.html#citation">Cite TripleDB</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="documentation.html#faq">FAQ</a></li><li><a href="about.html#policies">Policies</a></li></ul></div>
   </div>
-  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · Search-enabled static build</div><div><span data-config="updatePolicy">Planned at least annually</span></div></div>
+  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · v1.0.0 static build</div><div><span data-config="updatePolicy">Stable releases are archived through GitHub and Zenodo; data updates are planned at least annually.</span></div></div>
 </footer>
 </body>
 </html>
