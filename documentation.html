@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quick start, data model, curation policy and help for TripleDB.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Documentation | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body class="" data-page="documentation">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home">
+      <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+      <span class="brand-copy">
+        <span class="brand-name">TripleDB</span>
+        <span class="brand-tagline">Higher-order genetic interactions</span>
+      </span>
+    </a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html" aria-current="page">Help</a></li><li><a href="about.html">About</a></li></ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme" title="Change theme">◐</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Help</span></div><div class="eyebrow">First-visit guidance</div><h1>Documentation and help</h1><p class="lede">This page consolidates the quick start, search guidance, data model, curation methods, identifier policy and frequently asked questions.</p></div></section>
+<section class="page-section compact"><div class="container wide docs-layout"><nav class="docs-nav" aria-label="Documentation sections"><h2>On this page</h2><ul><li><a href="#quick-start">Quick start</a></li><li><a href="#search-guide">Search guide</a></li><li><a href="#data-model">Data model</a></li><li><a href="#directionality">Directionality</a></li><li><a href="#provenance">Provenance</a></li><li><a href="#curation">Curation workflow</a></li><li><a href="#identifiers">ID policy</a></li><li><a href="#field-dictionary">Field dictionary</a></li><li><a href="#faq">FAQ</a></li></ul></nav><div class="docs-content">
+<section id="quick-start"><div class="eyebrow">01</div><h2>Quick start</h2><div class="grid grid-3"><article class="card pad"><h3>1. Enter a query</h3><p class="muted">Use a gene symbol, alias, TDB accession, BioGRID interaction ID or PubMed identifier.</p></article><article class="card pad"><h3>2. Review matches</h3><p class="muted">Filter by species, relation type, directionality, curation origin and evidence level.</p></article><article class="card pad"><h3>3. Verify evidence</h3><p class="muted">Open a TDB record, inspect qualification text and follow every supporting source identifier.</p></article></div></section>
+<section id="search-guide"><div class="eyebrow">02</div><h2>Search guide</h2><p>Keep the first search simple, then expose advanced filters after results load. Suggested input types:</p><div class="table-wrap"><table><thead><tr><th>Input</th><th>Meaning</th><th>Expected behavior</th></tr></thead><tbody><tr><td><code>GENE1</code></td><td>Official symbol or alias</td><td>Return every curated combination containing the matched gene.</td></tr><tr><td><code>TDB000001</code></td><td>Stable TripleDB accession</td><td>Open the exact curated record.</td></tr><tr><td><code>BIOGRID:1113787</code></td><td>Source interaction ID</td><td>Show the source record and all linked TDB accessions.</td></tr><tr><td><code>PMID:12345678</code></td><td>Publication source</td><td>Return curated records and source evidence from that paper.</td></tr></tbody></table></div><div class="callout info mt-2"><div class="callout-icon">i</div><div><strong>Usability rule:</strong><p>Display examples next to the search box and accept identifiers with or without common prefixes where ambiguity is low.</p></div></div></section>
+<section id="data-model"><div class="eyebrow">03</div><h2>Data model</h2><p>A TripleDB record represents one curated higher-order genetic relationship. It may aggregate several BioGRID source records, include literature-only evidence, or combine both.</p><div class="pipeline mt-3"><div class="pipeline-step"><div class="pipeline-number">ENTITY</div><h3>TDB record</h3><p>Stable identity and record-level version.</p></div><div class="pipeline-step"><div class="pipeline-number">BIOLOGY</div><h3>Relationship</h3><p>Genes, relation type, direction, phenotype and condition.</p></div><div class="pipeline-step"><div class="pipeline-number">EVIDENCE</div><h3>Sources</h3><p>BioGRID IDs, PMID/DOI, qualification and source location.</p></div><div class="pipeline-step"><div class="pipeline-number">CURATION</div><h3>History</h3><p>Origin, confidence, notes, revisions and status.</p></div></div></section>
+<section id="directionality"><div class="eyebrow">04</div><h2>Directionality and gene roles</h2><div class="grid grid-3"><article class="card pad"><span class="badge secondary">Symmetric</span><h3 class="mt-2">Set-based interaction</h3><p class="muted">Use for relationships such as synthetic lethality when the source does not define a causal ordering among genes.</p></article><article class="card pad"><span class="badge primary">Directional</span><h3 class="mt-2">Background → modifier</h3><p class="muted">Use when a gene or perturbation rescues, suppresses or enhances a defined background phenotype.</p></article><article class="card pad"><span class="badge warning">Ambiguous</span><h3 class="mt-2">Roles unresolved</h3><p class="muted">Retain the relationship and evidence text while explicitly avoiding an unsupported interpretation.</p></article></div></section>
+<section id="provenance"><div class="eyebrow">05</div><h2>Provenance and evidence linking</h2><p>Three identifiers must remain conceptually separate:</p><dl class="definition-grid"><dt>TDB accession</dt><dd>The stable identifier for the curated high-order interaction record.</dd><dt>BioGRID interaction ID</dt><dd>An external source-record identifier retained as provenance; several may support one TDB record.</dd><dt>PMID / DOI</dt><dd>The publication evidence source, stored in a structured field even when repeated in qualification text.</dd></dl><p class="mt-2">For download convenience, multiple source IDs may be pipe-delimited in the flat table, while the internal database should normalize them as one source-link row per identifier.</p></section>
+<section id="curation"><div class="eyebrow">06</div><h2>Curation workflow</h2><ol><li>Freeze and document a BioGRID source release.</li><li>Apply reproducible candidate filters to genetic, same-species, triple-related records.</li><li>Review all relevant source rows and the publication context.</li><li>Aggregate records that support the same higher-order biological conclusion.</li><li>Assign relation type, directionality, roles, phenotype, condition and confidence only where supported.</li><li>Create a stable TDB accession and preserve all source links.</li><li>Run quality control and publish the record within a versioned release.</li></ol><div class="callout warning mt-2"><div class="callout-icon">!</div><div><strong>Do not silently overwrite:</strong><p>Corrections should preserve the accession and create a visible change-history event. Invalidated records should be deprecated, not recycled.</p></div></div></section>
+<section id="identifiers"><div class="eyebrow">07</div><h2>Identifier and version policy</h2><ul class="list-check"><li>Every curated high-order record receives one TDB accession.</li><li>TDB accessions are never reassigned to a different relationship.</li><li>New records append after the highest existing accession.</li><li>Minor annotation corrections retain the same accession and increment record history.</li><li>Major reinterpretation is documented; splitting or merging records preserves redirects and predecessor links.</li><li>Deprecated accessions remain resolvable with a reason and replacement when applicable.</li></ul><p class="mt-2"><a href="updates.html">See the proposed release and deprecation policy →</a></p></section>
+<section id="field-dictionary"><div class="eyebrow">08</div><h2>Core field dictionary</h2><div class="field-list"><div class="field-row"><div class="field-name">tdb_record_id</div><div class="field-description">Stable accession for one curated TripleDB relationship.</div></div><div class="field-row"><div class="field-name">gene_combination</div><div class="field-description">Canonical ordered display or normalized member list; define delimiter and sorting policy.</div></div><div class="field-row"><div class="field-name">relation_type</div><div class="field-description">Controlled biological category such as synthetic lethality, rescue or suppression.</div></div><div class="field-row"><div class="field-name">directionality</div><div class="field-description">Symmetric, directional or ambiguous.</div></div><div class="field-row"><div class="field-name">affected_background</div><div class="field-description">Genetic background whose phenotype is modified; nullable for symmetric records.</div></div><div class="field-row"><div class="field-name">modifier_or_effector</div><div class="field-description">Gene and perturbation responsible for rescue, suppression or enhancement.</div></div><div class="field-row"><div class="field-name">source_record_ids</div><div class="field-description">One or more namespaced external source IDs, such as BIOGRID:1113787.</div></div><div class="field-row"><div class="field-name">source_publications</div><div class="field-description">Structured PMID/DOI values supporting the record.</div></div><div class="field-row"><div class="field-name">qualification</div><div class="field-description">Human-readable source evidence or preserved qualification text.</div></div><div class="field-row"><div class="field-name">curation_origin</div><div class="field-description">BioGRID aggregated, BioGRID plus manual review, or manual literature curation.</div></div><div class="field-row"><div class="field-name">record_status</div><div class="field-description">Active, revised, reclassified or deprecated.</div></div></div></section>
+<section id="faq"><div class="eyebrow">09</div><h2>Frequently asked questions</h2><details><summary>Why does every curated combination need a TDB accession?</summary><div class="details-body">Because the aggregated high-order conclusion is a TripleDB object, not any single underlying BioGRID pairwise record. A stable accession allows citation, revision tracking and permanent linking.</div></details><details><summary>Can a record list many BioGRID interaction IDs?</summary><div class="details-body">Yes. The website can display them as individual links; a flat-file export may use a documented pipe delimiter. Internally, use a normalized source-link table.</div></details><details><summary>Why store PMID separately when BioGRID IDs can be resolved?</summary><div class="details-body">A self-contained curated table is easier to search, validate and reuse. Structured publications also support statistics, deduplication and citation without a second lookup.</div></details><details><summary>Does the first release need an API or network visualization?</summary><div class="details-body">No. A clear search, stable record pages, evidence provenance, complete downloads, help and version information are higher priority. An API and advanced visualization can follow after the data model is stable.</div></details></section>
+</div></div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+        <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
+      </a>
+      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Interaction search</a></li>
+        <li><a href="browse.html">Browse records</a></li>
+        <li><a href="evidence.html">Source evidence</a></li>
+        <li><a href="record.html">Record details</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Data</div>
+      <ul class="footer-links">
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="updates.html">Version history</a></li>
+        <li><a href="documentation.html#data-model">Data model</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Project</div>
+      <ul class="footer-links">
+        <li><a href="about.html#citation">Cite TripleDB</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="documentation.html#faq">FAQ</a></li>
+        <li><a href="about.html#policies">Policies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+  </div>
+</footer>
+</body>
+</html>

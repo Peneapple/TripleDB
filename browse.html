@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse TripleDB curated records, genes, organisms and experimental systems.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Browse | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+  <script defer src="assets/js/browse-page.js"></script>
+  <script defer src="assets/js/pubmed-linkifier.js"></script>
+</head>
+<body data-page="browse">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Live database browser · Counts and records are loaded from the core JSON</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation"><ul><li><a href="search.html">Search</a></li><li><a href="browse.html" aria-current="page">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul></nav>
+    <div class="header-actions"><button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme">◐</button><button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button></div>
+  </div>
+</header>
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Browse</span></div>
+      <div class="eyebrow">Discovery without an exact query</div>
+      <h1>Browse curated TripleDB records</h1>
+      <p class="lede">Filter all curated records, inspect an alphabetical gene index, or enter through an organism or experimental-system category.</p>
+    </div>
+  </section>
+
+  <section class="page-section compact" id="record-browser">
+    <div class="container wide">
+      <div class="section-heading"><div><div class="eyebrow">Core records</div><h2>Record browser</h2><p>Every row links to a stable TDB record page and its BioGRID-derived source evidence.</p></div><button class="btn btn-outline" id="browse-reset" type="button">Reset filters</button></div>
+      <div class="filter-strip">
+        <label><span>Organism</span><select class="form-select" id="browse-organism"><option>Loading…</option></select></label>
+        <label><span>Experimental system</span><select class="form-select" id="browse-experimental-system"><option>Loading…</option></select></label>
+        <label><span>Interaction order</span><select class="form-select" id="browse-order"><option>Loading…</option></select></label>
+        <label><span>Rows per page</span><select class="form-select" id="browse-page-size"><option value="25">25</option><option value="50" selected>50</option><option value="100">100</option><option value="250">250</option></select></label>
+      </div>
+      <div class="result-toolbar"><span class="result-count" id="browse-count">Loading…</span><a class="btn btn-ghost btn-sm" href="search.html">Open advanced search →</a></div>
+      <div class="callout info mb-0" id="browse-status"><div class="callout-icon">i</div><div>Loading curated records…</div></div>
+      <div class="pagination-bar" id="browse-pagination-top"></div>
+      <div class="table-wrap search-results-table"><table><thead id="browse-table-head"><tr><th>TDB accession</th><th>Gene combination</th><th>Experimental system</th><th>Organism</th><th>Order</th><th>Source IDs</th><th>Qualification</th></tr></thead><tbody id="browse-table-body"><tr><td colspan="7">Loading…</td></tr></tbody></table></div>
+      <div class="pagination-bar" id="browse-pagination-bottom"></div>
+    </div>
+  </section>
+
+  <section class="page-section soft" id="gene-index">
+    <div class="container">
+      <div class="section-heading"><div><div class="eyebrow">Gene index</div><h2>Alphabetical gene access</h2><p id="gene-index-status">Loading indexed genes…</p></div><label class="compact-search-label"><span class="visually-hidden">Filter genes</span><input class="form-input" id="gene-index-query" placeholder="Filter current letter"></label></div>
+      <div class="alpha-index live-alpha" id="gene-alphabet" aria-label="Gene alphabet index"></div>
+      <div class="gene-index-grid mt-3" id="gene-index-results"></div>
+    </div>
+  </section>
+
+  <section class="page-section" id="species">
+    <div class="container">
+      <div class="section-heading"><div><div class="eyebrow">Coverage</div><h2>Browse by organism</h2><p>Choose a card to apply that organism to the live record browser.</p></div><a class="btn btn-outline" href="statistics.html">Full statistics</a></div>
+      <div class="grid grid-4" id="species-grid-live"><p class="muted">Loading organism counts…</p></div>
+    </div>
+  </section>
+
+  <section class="page-section soft" id="relation-types">
+    <div class="container">
+      <div class="section-heading"><div><div class="eyebrow">Experimental systems</div><h2>Browse by relation category</h2><p>Each category opens a prefiltered search page.</p></div><a class="btn btn-outline" href="documentation.html#directionality">Read definitions</a></div>
+      <div class="relation-list-grid" id="relation-grid-live"><p class="muted">Loading categories…</p></div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID source evidence.</p><span class="badge warning" data-config="releaseLabel">Search-enabled local build</span></div>
+    <div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="search.html">Interaction search</a></li><li><a href="browse.html">Browse records</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="record.html">Record details</a></li></ul></div>
+    <div><div class="footer-heading">Data</div><ul class="footer-links"><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="updates.html">Version history</a></li><li><a href="documentation.html#data-model">Data model</a></li></ul></div>
+    <div><div class="footer-heading">Project</div><ul class="footer-links"><li><a href="about.html#citation">Cite TripleDB</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="documentation.html#faq">FAQ</a></li><li><a href="about.html#policies">Policies</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · Search-enabled static build</div><div><span data-config="updatePolicy">Planned at least annually</span></div></div>
+</footer>
+</body>
+</html>

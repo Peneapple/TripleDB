@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Release-specific coverage and curation statistics for TripleDB.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Statistics | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body class="" data-page="statistics">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home">
+      <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+      <span class="brand-copy">
+        <span class="brand-name">TripleDB</span>
+        <span class="brand-tagline">Higher-order genetic interactions</span>
+      </span>
+    </a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html" aria-current="page">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme" title="Change theme">◐</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Statistics</span></div>
+    <div class="eyebrow">Coverage and transparency</div>
+    <h1>Database statistics</h1>
+    <p class="lede">Current coverage of the curated TripleDB core table and its BioGRID-derived source-evidence layer.</p>
+  </div>
+</section>
+
+<section class="page-section compact">
+  <div class="container">
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <div>
+        <span class="badge warning" data-statistics-source>Bundled snapshot</span>
+        <p class="small subtle mt-1 mb-0" data-statistics-status>Showing the bundled statistics snapshot. Run the included local server to load replacement JSON files dynamically.</p>
+      </div>
+      <span class="badge primary" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div class="stat-strip mt-3">
+      <div class="stat-item"><span class="stat-value" data-stat="curatedRecords">5,450</span><span class="stat-label">Curated TDB records</span><div class="stat-note">One record per TripleDB accession</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="tripleRecords">5,091</span><span class="stat-label">Triple records</span><div class="stat-note">Three indexed genes</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="quadrupleOrHigherRecords">338</span><span class="stat-label">Quadruple or higher</span><div class="stat-note">Four or more indexed genes</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="organisms">8</span><span class="stat-label">Organisms</span><div class="stat-note"><span data-stat="experimentalSystems">15</span> experimental-system categories</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section surface">
+  <div class="container">
+    <div class="section-heading">
+      <div><div class="eyebrow">Source-evidence layer</div><h2>Traceability to BioGRID, manual curation and publications</h2><p>BioGRID source-record counts come from <code>data/biogrid_source_index.json</code>. Manual non-BioGRID core records are detected when <code>Source_ID</code> in <code>data/tdb_core_interaction_index.json</code> contains the marker <code>TDB</code>. Publication counts merge PubMed identifiers detected in both JSON files.</p></div>
+    </div>
+    <div class="grid grid-4">
+      <article class="card pad"><span class="stat-value compact-value" data-stat="sourceEvidenceRecords">10,202</span><h3>BioGRID source records</h3><p class="muted mb-0">Filtered BioGRID records retained for provenance.</p></article>
+      <article class="card pad"><span class="stat-value compact-value" data-stat="sourceBiogridIds">10,202</span><h3>Indexed BioGRID IDs</h3><p class="muted mb-0">Exact identifiers available for source lookup.</p></article>
+      <article class="card pad"><span class="stat-value compact-value" data-stat="manualCurationRecords">0</span><h3>Manual non-BioGRID records</h3><p class="muted mb-0">Core records whose Source_ID contains the TDB marker.</p></article>
+      <article class="card pad"><span class="stat-value compact-value" data-stat="publications">706</span><h3>Unique PubMed IDs</h3><p class="muted mb-0">Deduplicated PMID numbers detected in source records and core Qualifications.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+    <div class="grid grid-2">
+      <article class="card pad-lg">
+        <h2>Interaction order</h2>
+        <p class="muted">Classification is based on the curated gene columns rather than text mining of the qualification field.</p>
+        <div class="table-wrap mt-2"><table class="statistics-table"><thead><tr><th>Class</th><th>Records</th><th>Share</th></tr></thead><tbody data-distribution="interaction-order"><tr><td>Triple</td><td class="number-cell">5,091</td><td class="distribution-cell"><div class="distribution-bar" aria-label="93.41 percent"><span style="width:93.4128%"></span></div><span class="distribution-percent">93.4%</span></td></tr><tr><td>Quadruple or higher</td><td class="number-cell">338</td><td class="distribution-cell"><div class="distribution-bar" aria-label="6.20 percent"><span style="width:6.2018%"></span></div><span class="distribution-percent">6.20%</span></td></tr><tr><td>Pair-context / lower-order</td><td class="number-cell">21</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.39 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.39%</span></td></tr></tbody></table></div>
+      </article>
+      <article class="card pad-lg">
+        <h2>Records by organism</h2>
+        <p class="muted">The current release is dominated by budding yeast but includes eight organisms.</p>
+        <div class="table-wrap mt-2"><table class="statistics-table"><thead><tr><th>Organism</th><th>Records</th><th>Share</th></tr></thead><tbody data-distribution="organism"><tr><td>Saccharomyces cerevisiae (S288c)</td><td class="number-cell">5,332</td><td class="distribution-cell"><div class="distribution-bar" aria-label="97.83 percent"><span style="width:97.8349%"></span></div><span class="distribution-percent">97.8%</span></td></tr><tr><td>Schizosaccharomyces pombe (972h)</td><td class="number-cell">92</td><td class="distribution-cell"><div class="distribution-bar" aria-label="1.69 percent"><span style="width:1.6881%"></span></div><span class="distribution-percent">1.69%</span></td></tr><tr><td>Homo sapiens</td><td class="number-cell">15</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.28 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.28%</span></td></tr><tr><td>Candida albicans (SC5314)</td><td class="number-cell">4</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.07 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.07%</span></td></tr><tr><td>Mus musculus</td><td class="number-cell">3</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.06 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.06%</span></td></tr><tr><td>Danio rerio</td><td class="number-cell">2</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.04 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.04%</span></td></tr><tr><td>Arabidopsis thaliana (Columbia)</td><td class="number-cell">1</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.02 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.02%</span></td></tr><tr><td>Drosophila melanogaster</td><td class="number-cell">1</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.02 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.02%</span></td></tr></tbody></table></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-section soft">
+  <div class="container">
+    <div class="section-heading">
+      <div><div class="eyebrow">Experimental annotation</div><h2>Records by experimental system</h2><p>All 15 categories from the core curated table are shown below.</p></div>
+    </div>
+    <div class="card pad-lg">
+      <div class="table-wrap"><table class="statistics-table"><thead><tr><th>Experimental system</th><th>Records</th><th>Share</th></tr></thead><tbody data-distribution="experimental-system"><tr><td>Negative Genetic</td><td class="number-cell">3,496</td><td class="distribution-cell"><div class="distribution-bar" aria-label="64.15 percent"><span style="width:64.1468%"></span></div><span class="distribution-percent">64.1%</span></td></tr><tr><td>Synthetic Rescue</td><td class="number-cell">632</td><td class="distribution-cell"><div class="distribution-bar" aria-label="11.60 percent"><span style="width:11.5963%"></span></div><span class="distribution-percent">11.6%</span></td></tr><tr><td>Synthetic Growth Defect</td><td class="number-cell">392</td><td class="distribution-cell"><div class="distribution-bar" aria-label="7.19 percent"><span style="width:7.1927%"></span></div><span class="distribution-percent">7.19%</span></td></tr><tr><td>Phenotypic Enhancement</td><td class="number-cell">346</td><td class="distribution-cell"><div class="distribution-bar" aria-label="6.35 percent"><span style="width:6.3486%"></span></div><span class="distribution-percent">6.35%</span></td></tr><tr><td>Synthetic Lethality</td><td class="number-cell">298</td><td class="distribution-cell"><div class="distribution-bar" aria-label="5.47 percent"><span style="width:5.4679%"></span></div><span class="distribution-percent">5.47%</span></td></tr><tr><td>Phenotypic Suppression</td><td class="number-cell">114</td><td class="distribution-cell"><div class="distribution-bar" aria-label="2.09 percent"><span style="width:2.0917%"></span></div><span class="distribution-percent">2.09%</span></td></tr><tr><td>Dosage Rescue</td><td class="number-cell">87</td><td class="distribution-cell"><div class="distribution-bar" aria-label="1.60 percent"><span style="width:1.5963%"></span></div><span class="distribution-percent">1.60%</span></td></tr><tr><td>Positive Genetic</td><td class="number-cell">51</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.94 percent"><span style="width:0.9358%"></span></div><span class="distribution-percent">0.94%</span></td></tr><tr><td>Allele Rescue</td><td class="number-cell">10</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.18 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.18%</span></td></tr><tr><td>Synthetic Sickness</td><td class="number-cell">9</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.17 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.17%</span></td></tr><tr><td>Severe Synthetic Sickness</td><td class="number-cell">5</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.09 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.09%</span></td></tr><tr><td>Dosage Growth Defect</td><td class="number-cell">4</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.07 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.07%</span></td></tr><tr><td>Tested Viable</td><td class="number-cell">3</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.06 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.06%</span></td></tr><tr><td>Dosage Lethality</td><td class="number-cell">2</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.04 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.04%</span></td></tr><tr><td>Synthetic Haploinsufficiency</td><td class="number-cell">1</td><td class="distribution-cell"><div class="distribution-bar" aria-label="0.02 percent"><span style="width:0.6000%"></span></div><span class="distribution-percent">0.02%</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container grid grid-2">
+    <article class="card pad-lg">
+      <span class="badge primary">Classification note</span>
+      <h2 class="mt-2">How interaction order is counted</h2>
+      <ul class="list-check muted">
+        <li><strong>Triple:</strong> records with three indexed genes.</li>
+        <li><strong>Quadruple or higher:</strong> records with four or more indexed genes, supported by Gene_A through Gene_G in the core table.</li>
+        <li><strong>Pair-context / lower-order:</strong> a small set of records retained because they are directly relevant to higher-order interpretation.</li>
+      </ul>
+    </article>
+    <article class="card pad-lg">
+      <span class="badge secondary">Automatic updates</span>
+      <h2 class="mt-2">Replace files, keep paths stable</h2>
+      <p class="muted">When a new release is ready, replace the fixed-name JSON files in <code>data/</code>. The statistics above are then recalculated from each JSON file's <code>_meta</code> section when served through a local web server or GitHub Pages.</p>
+      <p class="small subtle mb-0">Opening the site directly with <code>file://</code> shows the bundled snapshot because browsers commonly block local JSON fetching.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+        <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
+      </a>
+      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Interaction search</a></li>
+        <li><a href="browse.html">Browse records</a></li>
+        <li><a href="evidence.html">Source evidence</a></li>
+        <li><a href="record.html">Record details</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Data</div>
+      <ul class="footer-links">
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="updates.html">Version history</a></li>
+        <li><a href="documentation.html#data-model">Data model</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Project</div>
+      <ul class="footer-links">
+        <li><a href="about.html#citation">Cite TripleDB</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="documentation.html#faq">FAQ</a></li>
+        <li><a href="about.html#policies">Policies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+  </div>
+</footer>
+</body>
+</html>

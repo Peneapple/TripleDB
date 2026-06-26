@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Release history, stable accession and maintenance policy for TripleDB.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Version history | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body class="" data-page="updates">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home">
+      <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+      <span class="brand-copy">
+        <span class="brand-name">TripleDB</span>
+        <span class="brand-tagline">Higher-order genetic interactions</span>
+      </span>
+    </a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme" title="Change theme">◐</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero"><div class="container"><div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Version history</span></div><div class="eyebrow">Sustainability and stable identifiers</div><h1>Version history and update policy</h1><p class="lede">A dedicated release page makes maintenance visible, preserves old downloads and documents how source changes affect existing TDB records.</p></div></section>
+<section class="page-section compact"><div class="container"><div class="grid grid-2"><article class="card pad-lg"><span class="badge primary">Proposed cadence</span><h2 class="mt-2" data-config="updatePolicy">Planned at least annually</h2><p class="muted">Each update compares the new BioGRID release with the previous source release, reviews newly added and modified candidate records, and applies the same curation rules.</p></article><article class="card pad-lg"><span class="badge secondary">Stable accession policy</span><h2 class="mt-2">TDB IDs are not reassigned</h2><p class="muted">Old links remain resolvable. Revisions, reclassifications and deprecations are recorded rather than hidden.</p></article></div></div></section>
+<section class="page-section soft"><div class="container"><div class="section-heading"><div><div class="eyebrow">Release log</div><h2>Version history</h2><p>Keep downloadable snapshots and concise change summaries for every public release.</p></div></div><div class="timeline"><div class="timeline-item"><div class="timeline-date">Planned initial release</div><div class="flex items-center justify-between gap-2 flex-wrap"><h3>TripleDB v1.0</h3><span class="badge warning">Not released</span></div><p class="muted">Initial curated interaction table, BioGRID-derived evidence layer, schema, website documentation and stable accession registry.</p><div class="download-meta"><span>Source BioGRID release: to be confirmed</span><span>·</span><span>Record counts: pending</span></div></div><div class="timeline-item"><div class="timeline-date">Future annual update</div><h3>TripleDB v1.x</h3><p class="muted">Review new and modified BioGRID records, add manually curated literature records, revise annotations and publish a structured change log.</p></div></div></div></section>
+<section class="page-section"><div class="container"><div class="section-heading"><div><div class="eyebrow">Change categories</div><h2>What every release should report</h2></div></div><div class="grid grid-4"><article class="card pad"><span class="badge success">Added</span><h3 class="mt-2">New records</h3><p class="muted">New TDB accessions and the source evidence that triggered inclusion.</p></article><article class="card pad"><span class="badge secondary">Revised</span><h3 class="mt-2">Annotation changes</h3><p class="muted">Same accession; corrected roles, phenotype, condition or provenance.</p></article><article class="card pad"><span class="badge accent">Reclassified</span><h3 class="mt-2">Interpretation changes</h3><p class="muted">Relation category or evidence confidence changed after review.</p></article><article class="card pad"><span class="badge warning">Deprecated</span><h3 class="mt-2">Withdrawn records</h3><p class="muted">Accession remains visible with reason, date and replacement link.</p></article></div><div class="callout info mt-3"><div class="callout-icon">i</div><div><strong>Source-release comparison should include more than new IDs.</strong><p>Also inspect modified metadata and source records that were corrected, merged or removed.</p></div></div></div></section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+        <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
+      </a>
+      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Interaction search</a></li>
+        <li><a href="browse.html">Browse records</a></li>
+        <li><a href="evidence.html">Source evidence</a></li>
+        <li><a href="record.html">Record details</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Data</div>
+      <ul class="footer-links">
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="updates.html">Version history</a></li>
+        <li><a href="documentation.html#data-model">Data model</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Project</div>
+      <ul class="footer-links">
+        <li><a href="about.html#citation">Cite TripleDB</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="documentation.html#faq">FAQ</a></li>
+        <li><a href="about.html#policies">Policies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+  </div>
+</footer>
+</body>
+</html>

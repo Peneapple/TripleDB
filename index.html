@@ -1,12 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TripleDB</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search-enabled static interface for a curated database of higher-order genetic interactions.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Home | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
 </head>
-<body>
-  <h1>TripleDB</h1>
-  <p>A curated database of triple-gene and higher-order genetic interactions.</p>
-  <p>Status: test page successfully deployed.</p>
+<body class="" data-page="home">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home">
+      <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+      <span class="brand-copy">
+        <span class="brand-name">TripleDB</span>
+        <span class="brand-tagline">Higher-order genetic interactions</span>
+      </span>
+    </a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme" title="Change theme">◐</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Curated evidence, explicit provenance</div>
+      <h1>Higher-order genetic interactions, organized as citable records.</h1>
+      <p class="lede">TripleDB is designed to integrate manually curated triple- and higher-order gene relationships with stable TDB accessions, source BioGRID records, publication evidence and transparent curation notes.</p>
+      <form class="search-panel" action="search.html" method="get" role="search" aria-label="Search TripleDB">
+        <div class="search-row">
+          <div class="search-input-wrap">
+            <label class="visually-hidden" for="home-query">Gene, accession or publication</label>
+            <input class="search-input" id="home-query" name="q" placeholder="Gene symbol, alias, TDB ID, BioGRID ID or PMID" autocomplete="off">
+          </div>
+          <label class="visually-hidden" for="home-scope">Search scope</label>
+          <select class="form-select" id="home-scope" name="scope">
+            <option value="interactions">Curated interactions</option>
+            <option value="evidence">Source evidence</option>
+          </select>
+          <button class="btn btn-primary btn-lg" type="submit">Search</button>
+        </div>
+        <p class="search-hint">Designed for first-time users: one search box, visible examples and no login.</p>
+      </form>
+      <div class="hero-actions">
+        <a class="btn btn-outline" href="browse.html">Browse the database structure</a>
+        <a class="btn btn-ghost" href="documentation.html#quick-start">Read the quick start →</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="network-orbit">
+        <div class="node node-a">A</div>
+        <div class="node node-b">B</div>
+        <div class="node node-c">C</div>
+        <div class="node node-center">curated<br>record</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section compact">
+  <div class="container">
+    <div class="stat-strip" aria-label="Current TripleDB statistics">
+      <div class="stat-item"><span class="stat-value" data-stat="curatedRecords">5,450</span><span class="stat-label">Curated TDB records</span><div class="stat-note"><span data-stat="tripleRecords">5,091</span> triple records</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="sourceEvidenceRecords">10,202</span><span class="stat-label">BioGRID source records</span><div class="stat-note">Source-evidence audit layer</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="manualCurationRecords">0</span><span class="stat-label">Manual non-BioGRID records</span><div class="stat-note">Source_ID contains TDB</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="organisms">8</span><span class="stat-label">Organisms represented</span><div class="stat-note"><span data-stat="experimentalSystems">15</span> experimental systems</div></div>
+      <div class="stat-item"><span class="stat-value" data-stat="publications">706</span><span class="stat-label">Supporting publications</span><div class="stat-note">Unique PubMed IDs detected</div></div>
+    </div>
+    <p class="small subtle text-center mt-2 mb-0" data-statistics-status>Showing the bundled statistics snapshot. Run the included local server to load replacement JSON files dynamically.</p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container">
+    <div class="section-heading">
+      <div class="section-title-group">
+        <div class="eyebrow">Core user journeys</div>
+        <h2>Everything a database visitor should find quickly</h2>
+        <p>The website separates curated biological conclusions from the source-evidence layer, while keeping both searchable and downloadable.</p>
+      </div>
+    </div>
+    <div class="grid grid-3">
+      <article class="card pad-lg hover">
+        <div class="card-icon">⌕</div>
+        <h3><a href="search.html">Search curated interactions</a></h3>
+        <p class="muted">Query by gene symbol, alias, TDB accession, BioGRID interaction ID or publication, then filter by species, relation type and curation origin.</p>
+      </article>
+      <article class="card pad-lg hover">
+        <div class="card-icon blue">↳</div>
+        <h3><a href="evidence.html">Verify source evidence</a></h3>
+        <p class="muted">Use a BioGRID interaction ID to inspect the preserved source record and understand why multiple pairwise records were aggregated.</p>
+      </article>
+      <article class="card pad-lg hover">
+        <div class="card-icon purple">⇩</div>
+        <h3><a href="downloads.html">Download a frozen release</a></h3>
+        <p class="muted">Provide the curated table, filtered source-evidence table, schema, checksums, license terms and release notes together.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="page-section soft">
+  <div class="container">
+    <div class="section-heading">
+      <div class="section-title-group">
+        <div class="eyebrow">Provenance pipeline</div>
+        <h2>A transparent path from source records to TDB accessions</h2>
+        <p>This hierarchy can become the central explanatory figure on the home page, documentation and manuscript.</p>
+      </div>
+      <a class="btn btn-outline" href="documentation.html#provenance">View documentation</a>
+    </div>
+    <div class="pipeline">
+      <div class="pipeline-step"><div class="pipeline-number">STEP 01</div><h3>Frozen BioGRID release</h3><p>Record the exact source release, download date, format and citation.</p></div>
+      <div class="pipeline-step"><div class="pipeline-number">STEP 02</div><h3>Filtered evidence layer</h3><p>Preserve all source columns for same-species, genetic, triple-related candidate records.</p></div>
+      <div class="pipeline-step"><div class="pipeline-number">STEP 03</div><h3>Manual aggregation</h3><p>Combine relevant BioGRID IDs and literature evidence under explicit curation rules.</p></div>
+      <div class="pipeline-step"><div class="pipeline-number">STEP 04</div><h3>Stable TDB record</h3><p>Publish a citable high-order interaction with provenance and revision history.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container grid grid-2">
+    <article class="card pad-lg">
+      <div class="flex items-center justify-between gap-2 flex-wrap">
+        <div><span class="badge warning" data-config="releaseLabel">Data-ready draft</span><h2 class="mt-2">Release status</h2></div>
+        <a class="btn btn-outline" href="updates.html">Version history</a>
+      </div>
+      <p class="muted">The fixed website filenames let each new data release replace the previous deployment files without changing HTML or JavaScript paths.</p>
+      <div class="callout info mt-3"><div class="callout-icon">i</div><div><strong>Add your six release files to the fixed folders.</strong><p>Place three JSON indexes in <code>data/</code> and three CSV downloads in <code>downloads/</code>. Statistics update automatically when the site is served locally or through GitHub Pages.</p></div></div>
+    </article>
+    <article class="card pad-lg">
+      <span class="badge primary">Maintenance plan</span>
+      <h2 class="mt-2">Stable IDs and documented updates</h2>
+      <ul class="list-check muted">
+        <li>TDB accessions are never reassigned.</li>
+        <li>New records append to the existing accession series.</li>
+        <li>Revisions and deprecations remain visible in a change log.</li>
+        <li>Source releases and added record counts are reported per version.</li>
+      </ul>
+      <p class="small subtle mt-3 mb-0">Proposed cadence: <span data-config="updatePolicy">Planned at least annually</span>.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+        <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
+      </a>
+      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Interaction search</a></li>
+        <li><a href="browse.html">Browse records</a></li>
+        <li><a href="evidence.html">Source evidence</a></li>
+        <li><a href="record.html">Record details</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Data</div>
+      <ul class="footer-links">
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="updates.html">Version history</a></li>
+        <li><a href="documentation.html#data-model">Data model</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Project</div>
+      <ul class="footer-links">
+        <li><a href="about.html#citation">Cite TripleDB</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="documentation.html#faq">FAQ</a></li>
+        <li><a href="about.html#policies">Policies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+  </div>
+</footer>
 </body>
 </html>

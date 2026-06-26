@@ -1,0 +1,17 @@
+TripleDB fixed deployment filenames
+===================================
+
+Place JSON files here:
+
+  data/tdb_core_interaction_index.json
+  data/gene_alias_search_index_by_organism.json
+  data/biogrid_source_index.json
+
+Place CSV files here:
+
+  downloads/tdb_core_interaction_table.csv
+  downloads/gene_alias_table.csv
+  downloads/biogrid_source_table.csv
+
+Only the website deployment copies need these names. Your internal source and
+intermediate files can retain your own provenance-oriented naming system.

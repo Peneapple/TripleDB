@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Versioned data downloads and schema information for TripleDB.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Downloads | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body class="" data-page="downloads">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Search-enabled static build · Fixed JSON and CSV deployment paths are configured</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home">
+      <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+      <span class="brand-copy">
+        <span class="brand-name">TripleDB</span>
+        <span class="brand-tagline">Higher-order genetic interactions</span>
+      </span>
+    </a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+      <ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html" aria-current="page">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme" title="Change theme">◐</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><span>Download</span></div>
+    <div class="eyebrow">Reproducible data access</div>
+    <h1>Downloads and deployment files</h1>
+    <p class="lede">The website uses fixed public filenames so that a new release can replace the previous files without changing page code or links.</p>
+  </div>
+</section>
+
+<section class="page-section compact">
+  <div class="container">
+    <div class="callout info">
+      <div class="callout-icon">i</div>
+      <div>
+        <strong>This package does not bundle your private data files.</strong>
+        <p>Copy the three JSON files into <code>data/</code> and the three CSV files into <code>downloads/</code>, using the exact filenames shown below.</p>
+      </div>
+    </div>
+
+    <div class="section-heading mt-4">
+      <div><div class="eyebrow">Website indexes</div><h2>JSON files used by the interface</h2><p>These names are referenced centrally from <code>assets/js/config.js</code>.</p></div>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge primary">Core JSON</span><h3 class="mt-1">TripleDB interaction index</h3><p class="muted">Curated records, metadata, distributions and indexes for TDB ID, source ID, gene, organism and experimental system.</p><div class="download-meta"><code>data/tdb_core_interaction_index.json</code><span>·</span><span>Current snapshot: 5,450 records</span></div></div>
+      <a class="btn btn-primary" href="data/tdb_core_interaction_index.json" download>Download JSON</a>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge accent">Alias JSON</span><h3 class="mt-1">Gene alias search index</h3><p class="muted">Organism-aware mappings from aliases, systematic names and official symbols to standardized gene records.</p><div class="download-meta"><code>data/gene_alias_search_index_by_organism.json</code><span>·</span><span>Used for alias-aware gene search</span></div></div>
+      <a class="btn btn-primary" href="data/gene_alias_search_index_by_organism.json" download>Download JSON</a>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge secondary">Source JSON</span><h3 class="mt-1">BioGRID source index</h3><p class="muted">Preserved source records indexed by BioGRID ID and publication source for provenance lookup.</p><div class="download-meta"><code>data/biogrid_source_index.json</code><span>·</span><span>Current snapshot: 10,202 source records</span></div></div>
+      <a class="btn btn-primary" href="data/biogrid_source_index.json" download>Download JSON</a>
+    </div>
+  </div>
+</section>
+
+<section class="page-section soft">
+  <div class="container">
+    <div class="section-heading">
+      <div><div class="eyebrow">Bulk tables</div><h2>CSV files provided for reuse and inspection</h2><p>The site links to these fixed names from the public <code>downloads/</code> folder.</p></div>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge primary">Core CSV</span><h3 class="mt-1">Curated higher-order interaction table</h3><p class="muted">The human-readable source table from which the core interaction JSON is generated.</p><div class="download-meta"><code>downloads/tdb_core_interaction_table.csv</code></div></div>
+      <a class="btn btn-primary" href="downloads/tdb_core_interaction_table.csv" download>Download CSV</a>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge accent">Alias CSV</span><h3 class="mt-1">Gene alias table</h3><p class="muted">The tabular source used to build the organism-aware alias index.</p><div class="download-meta"><code>downloads/gene_alias_table.csv</code></div></div>
+      <a class="btn btn-primary" href="downloads/gene_alias_table.csv" download>Download CSV</a>
+    </div>
+
+    <div class="download-card">
+      <div><span class="badge secondary">Source CSV</span><h3 class="mt-1">BioGRID-derived source evidence table</h3><p class="muted">The filtered source layer retained for traceability and manual inspection.</p><div class="download-meta"><code>downloads/biogrid_source_table.csv</code></div></div>
+      <a class="btn btn-primary" href="downloads/biogrid_source_table.csv" download>Download CSV</a>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container grid grid-2">
+    <article class="card pad-lg">
+      <h2>Fixed deployment tree</h2>
+      <pre><code>tripledb_site/
+├── data/
+│   ├── tdb_core_interaction_index.json
+│   ├── gene_alias_search_index_by_organism.json
+│   └── biogrid_source_index.json
+└── downloads/
+    ├── tdb_core_interaction_table.csv
+    ├── gene_alias_table.csv
+    └── biogrid_source_table.csv</code></pre>
+    </article>
+    <article class="card pad-lg">
+      <h2>Release workflow</h2>
+      <ol class="muted">
+        <li>Keep your master and intermediate files under your own descriptive naming system.</li>
+        <li>Generate a validated release copy of each JSON and CSV.</li>
+        <li>Copy or rename only the website-facing release copies to the six fixed names.</li>
+        <li>Replace the previous files, test locally, commit, and deploy through GitHub Pages.</li>
+      </ol>
+      <p class="small subtle mb-0">This separates your internal provenance-rich filenames from stable public URLs.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42">
+        <span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span>
+      </a>
+      <p>TripleDB is planned as a versioned, traceable resource. Stable TDB accessions, source BioGRID identifiers, publication evidence and curation history are designed to remain visible across releases.</p>
+      <span class="badge warning" data-config="releaseLabel">Data-ready draft</span>
+    </div>
+    <div>
+      <div class="footer-heading">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Interaction search</a></li>
+        <li><a href="browse.html">Browse records</a></li>
+        <li><a href="evidence.html">Source evidence</a></li>
+        <li><a href="record.html">Record details</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Data</div>
+      <ul class="footer-links">
+        <li><a href="statistics.html">Statistics</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="updates.html">Version history</a></li>
+        <li><a href="documentation.html#data-model">Data model</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Project</div>
+      <ul class="footer-links">
+        <li><a href="about.html#citation">Cite TripleDB</a></li>
+        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="documentation.html#faq">FAQ</a></li>
+        <li><a href="about.html#policies">Policies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© <span data-current-year></span> TripleDB project · Search-enabled local and GitHub Pages build</div>
+    <div><span data-config="updatePolicy">Planned at least annually</span> · Stable accession policy proposed</div>
+  </div>
+</footer>
+</body>
+</html>

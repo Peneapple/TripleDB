@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TripleDB stable curated interaction record details and source provenance.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Record | TripleDB</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script>
+  <script defer src="assets/js/data-adapter.js"></script>
+  <script defer src="assets/js/app.js"></script>
+  <script defer src="assets/js/record-page.js"></script>
+  <script defer src="assets/js/pubmed-linkifier.js"></script>
+</head>
+<body data-page="record">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="prototype-banner">Live record detail · TDB accession, curated fields and linked source evidence</div>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="TripleDB home"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a>
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation"><ul><li><a href="search.html">Search</a></li><li><a href="browse.html">Browse</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Download</a></li><li><a href="documentation.html">Help</a></li><li><a href="about.html">About</a></li></ul></nav>
+    <div class="header-actions"><button class="icon-button" id="theme-toggle" type="button" aria-label="Use dark theme">◐</button><button class="icon-button menu-button" id="menu-button" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation">☰</button></div>
+  </div>
+</header>
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html">Home</a><span>/</span><a href="search.html">Search</a><span>/</span><span>Record</span></div>
+      <div class="record-header">
+        <div><div class="eyebrow">Stable curated record</div><h1 class="record-id" id="record-id">Loading…</h1><p class="lede" id="record-subtitle">Loading curated record details.</p><div class="record-meta" id="record-badges"></div></div>
+        <div class="record-actions"><button class="btn btn-outline" type="button" data-copy="url">Copy stable link</button><button class="btn btn-outline" id="record-export" type="button" disabled>Export record JSON</button><button class="btn btn-primary" type="button" data-copy="citation">Copy citation</button></div>
+      </div>
+      <div class="callout info mt-3" id="record-status"><div class="callout-icon">i</div><div>Loading record…</div></div>
+    </div>
+  </section>
+
+  <section class="page-section compact" id="record-content" hidden>
+    <div class="container wide record-layout">
+      <div>
+        <section class="record-section">
+          <div class="flex items-center justify-between gap-2 flex-wrap"><h2>Interaction summary</h2><span class="badge primary">Core curated fields</span></div>
+          <dl class="definition-grid">
+            <dt>Gene combination</dt><dd><div id="record-gene-pills" class="gene-pills"></div></dd>
+            <dt>Experimental system</dt><dd id="record-experimental-system">—</dd>
+            <dt>Organism</dt><dd id="record-organism">—</dd>
+            <dt>Interaction order</dt><dd id="record-order">—</dd>
+            <dt>Estimated gene count</dt><dd id="record-gene-count">—</dd>
+          </dl>
+        </section>
+
+        <section class="record-section">
+          <div class="flex items-center justify-between gap-2 flex-wrap"><h2>Qualification</h2><span class="badge secondary">Preserved curator/source text</span></div>
+          <blockquote class="evidence-quote" id="record-qualification">—</blockquote>
+        </section>
+
+        <section class="record-section">
+          <div class="flex items-center justify-between gap-2 flex-wrap"><div><h2>Linked BioGRID source records</h2><p class="muted small"><span id="record-source-count">0</span> Source_ID values are attached to this curated record.</p></div><a class="btn btn-outline btn-sm" href="evidence.html">Open source search</a></div>
+          <div class="table-wrap"><table><thead><tr><th>BioGRID ID</th><th>Author</th><th>Publication</th><th>System type</th><th>Organism</th><th>Qualification</th><th>Linked TDB records</th></tr></thead><tbody id="record-source-table-body"><tr><td colspan="7">Loading source records…</td></tr></tbody></table></div>
+        </section>
+
+        <section class="record-section"><h2>Record navigation</h2><div class="record-navigation" id="record-navigation"></div></section>
+      </div>
+
+      <aside>
+        <section class="record-section"><h2 class="aside-heading">Record metadata</h2><div class="side-list"><div class="side-list-item"><span class="side-label">Accession</span><div class="side-value mono" id="record-accession">—</div></div><div class="side-list-item"><span class="side-label">Data status</span><div class="side-value">Curated core record</div></div><div class="side-list-item"><span class="side-label">Interaction order</span><div class="side-value" id="record-order-side">See summary</div></div></div></section>
+        <section class="record-section"><h2 class="aside-heading">Cross-references</h2><div class="side-list"><div class="side-list-item"><span class="side-label">BioGRID IDs</span><div class="side-value" id="record-source-ids">—</div></div><div class="side-list-item"><span class="side-label">Publications</span><div class="side-value" id="record-publications">—</div></div></div></section>
+        <section class="record-section"><h2 class="aside-heading">Interpretation note</h2><p class="muted small">Records with four or more indexed genes are classified as quadruple-or-higher. Pair-context records were retained only when directly relevant to higher-order interpretation.</p></section>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-brand"><a class="brand" href="index.html"><img src="assets/img/tripledb-mark.svg" alt="" width="42" height="42"><span class="brand-copy"><span class="brand-name">TripleDB</span><span class="brand-tagline">Higher-order genetic interactions</span></span></a><p>TripleDB exposes curated higher-order interaction records together with traceable BioGRID source evidence.</p><span class="badge warning" data-config="releaseLabel">Search-enabled local build</span></div>
+    <div><div class="footer-heading">Explore</div><ul class="footer-links"><li><a href="search.html">Interaction search</a></li><li><a href="browse.html">Browse records</a></li><li><a href="evidence.html">Source evidence</a></li><li><a href="record.html">Record details</a></li></ul></div>
+    <div><div class="footer-heading">Data</div><ul class="footer-links"><li><a href="statistics.html">Statistics</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="updates.html">Version history</a></li><li><a href="documentation.html#data-model">Data model</a></li></ul></div>
+    <div><div class="footer-heading">Project</div><ul class="footer-links"><li><a href="about.html#citation">Cite TripleDB</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="documentation.html#faq">FAQ</a></li><li><a href="about.html#policies">Policies</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom"><div>© <span data-current-year></span> TripleDB project · Search-enabled static build</div><div><span data-config="updatePolicy">Planned at least annually</span></div></div>
+</footer>
+</body>
+</html>
