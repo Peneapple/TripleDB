@@ -539,6 +539,22 @@
     sections.forEach((section) => observer.observe(section));
   };
 
+  const initializeCloudflareAnalytics = () => {
+    const token = clean(config.cloudflareAnalyticsToken);
+    if (!token) return;
+
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1" || window.location.protocol === "file:") return;
+
+    if (document.querySelector('script[src*="static.cloudflareinsights.com/beacon.min.js"]')) return;
+
+    const script = document.createElement("script");
+    script.defer = true;
+    script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    script.setAttribute("data-cf-beacon", JSON.stringify({ token }));
+    document.head.appendChild(script);
+  };
+
   window.TripleDBUI = {
     $,
     $$,
@@ -577,5 +593,6 @@
     initializeCopyButtons();
     initializePreviewActions();
     initializeDocumentationTracking();
+    initializeCloudflareAnalytics();
   });
 })();

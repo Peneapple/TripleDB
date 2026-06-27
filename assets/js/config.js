@@ -18,6 +18,7 @@ window.TRIPLEDB_CONFIG = {
   websiteUrl: "https://tripledb.org",
   version: "1.0.0",
   releaseDate: "2026-06-26",
+  cloudflareAnalyticsToken: "64b5792f46ff480fb93912ef05f1676e",
   firstAuthorEmail: "peter_geng@stu.pku.edu.cn",
   correspondingAuthorEmail: "hqzhu@pku.edu.cn",
 
